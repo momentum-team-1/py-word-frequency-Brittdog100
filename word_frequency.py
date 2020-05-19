@@ -1,3 +1,5 @@
+import operator
+
 STOP_WORDS = [
     'a', 'an', 'and', 'are', 'as', 'at', 'be', 'by', 'for', 'from', 'has', 'he',
     'i', 'in', 'is', 'it', 'its', 'of', 'on', 'that', 'the', 'to', 'were',
@@ -7,6 +9,23 @@ STOP_WORDS = [
 
 def print_word_freq(file):
     """Read in `file` and print out the frequency of words in that file."""
+    lines = []
+    with open(file) as f:
+        for line in f:
+            lines.append(line)
+    freq = {}
+    for line in lines:
+        ftd = line.replace('.', '').replace(',', '').replace('!', '').replace('?', '')
+        for w in ftd.split(' '):
+            word = w.strip().lower()
+            if word in STOP_WORDS or word == '':
+                continue
+            if word in freq:
+                freq[word] += 1
+            else:
+                freq[word] = 1
+    for word in sorted(freq, key=freq.get, reverse=True):
+        print(word,'|',"*" * freq[word])
     pass
 
 
