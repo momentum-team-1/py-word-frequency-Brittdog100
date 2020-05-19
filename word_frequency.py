@@ -1,5 +1,3 @@
-import operator
-
 STOP_WORDS = [
     'a', 'an', 'and', 'are', 'as', 'at', 'be', 'by', 'for', 'from', 'has', 'he',
     'i', 'in', 'is', 'it', 'its', 'of', 'on', 'that', 'the', 'to', 'were',
@@ -15,9 +13,9 @@ def print_word_freq(file):
             lines.append(line)
     freq = {}
     for line in lines:
-        ftd = line.replace('.', '').replace(',', '').replace('!', '').replace('?', '')
+        ftd = line.replace('.', '').replace(',', '').replace('!', '').replace('?', '').lower()
         for w in ftd.split(' '):
-            word = w.strip().lower()
+            word = w.strip()
             if word in STOP_WORDS or word == '':
                 continue
             if word in freq:
