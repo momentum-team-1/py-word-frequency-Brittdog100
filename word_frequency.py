@@ -14,7 +14,7 @@ def print_word_freq(file):
     freq = {}
     for line in lines:
         ftd = line.replace('.', '').replace(',', '').replace('!', '').replace('?', '').lower()
-        for w in ftd.split(' '):
+        for w in ftd.split():
             word = w.strip()
             if word in STOP_WORDS or word == '':
                 continue
